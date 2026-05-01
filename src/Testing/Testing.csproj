@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <PackageId>Atya.Governance.Testing</PackageId>
+        <AssemblyName>Atya.Governance.Testing</AssemblyName>
+        <RootNamespace>Atya.Governance.Testing</RootNamespace>
+        <Version>1.0.0</Version>
+        <Authors>Arsen Asulyan</Authors>
+        <Description>Small test-only helpers for Atya packages and applications.</Description>
+        <PackageTags>dotnet;testing;test-helpers;builders;assertions</PackageTags>
+        <RepositoryType>git</RepositoryType>
+        <IsPackable>true</IsPackable>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    </PropertyGroup>
+</Project>
