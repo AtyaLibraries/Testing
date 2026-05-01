@@ -29,4 +29,12 @@ Pack the library:
 dotnet pack .\src\Testing\Testing.csproj --configuration Release --output .\artifacts\packages
 ```
 
+## Publishing
+
+Packages are published to nuget.org automatically when changes are merged into `master`.
+
+Configure a GitHub Actions repository secret named `NUGET_API_KEY` with a nuget.org API key that has permission to push `Atya.Governance.Testing`.
+
+NuGet package versions are immutable. Update the package `<Version>` in `src/Testing/Testing.csproj` before merging a release change, otherwise nuget.org will reject the already-published version.
+
 For local package-feed publishing, see [LOCAL_NUGET.md](LOCAL_NUGET.md).
