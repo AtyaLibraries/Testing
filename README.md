@@ -4,6 +4,12 @@ Small test-only helpers for Atya packages and applications.
 
 This package is intended for test projects only. Production projects should not reference it.
 
+| | |
+| --- | --- |
+| Repository | [https://github.com/AtyaLibraries/Testing](https://github.com/AtyaLibraries/Testing) |
+| NuGet | `Atya.Governance.Testing` |
+| License | MIT |
+
 ## Helpers
 
 - `FakeClock` exposes controllable `UtcNow`, `Now`, and `Today` values.
@@ -13,28 +19,53 @@ This package is intended for test projects only. Production projects should not 
 - `ResultAssertions` checks common result-like shapes without referencing a specific result package.
 - `ValidationFailureBuilder` creates framework-neutral validation failure data.
 
+## Layout
+
+```text
+.
+|-- src/Atya.Governance.Testing/                    # Shipped library
+|-- tests/Atya.Governance.Testing.UnitTests/        # Unit tests
+|-- samples/Atya.Governance.Testing.Samples.UnitTests/ # Usage examples
+|-- docs/RELEASING.md                               # Release and recovery flow
+|-- .github/                                        # GitHub automation
+|-- bootstrap.ps1                                   # Repository setup
+`-- Directory.Packages.props                        # Central package versions
+```
+
 ## Development
 
-Restore, build, and test from the repository root:
-
-```powershell
-dotnet restore .\Testing.sln
-dotnet build .\Testing.sln --configuration Release --no-restore -m:1
-dotnet test .\Testing.sln --configuration Release --no-build -m:1
+```bash
+dotnet restore ./Atya.Governance.Testing.sln
+dotnet format ./Atya.Governance.Testing.sln --verify-no-changes
+dotnet build ./Atya.Governance.Testing.sln --configuration Release --no-restore
+dotnet test ./Atya.Governance.Testing.sln --configuration Release --no-build
+dotnet pack ./src/Atya.Governance.Testing/Atya.Governance.Testing.csproj \
+  --configuration Release \
+  --no-build \
+  --output artifacts/packages \
+  -p:EnablePackageValidation=true
 ```
 
-Pack the library:
+The first restore creates fresh `packages.lock.json` files for each project.
+CI restores in locked mode, verifies formatting, builds on Linux and Windows,
+enforces 80% line coverage, validates the package, and uploads symbols.
+
+## GitHub setup
+
+Push `development` and `master`, authenticate the GitHub CLI, and run:
 
 ```powershell
-dotnet pack .\src\Testing\Testing.csproj --configuration Release --output .\artifacts\packages
+./bootstrap.ps1 -RepoOwner AtyaLibraries -RepoName Testing
 ```
 
-## Publishing
+The script configures `development` as the default branch, branch rulesets,
+required CI checks, merge methods, and repository labels. Publishing also
+requires `NUGET_API_KEY`, `NUGET_SIGN_CERT_BASE64`,
+`NUGET_SIGN_CERT_PASSWORD`, and the `REQUIRE_SIGNED_PACKAGES` variable.
 
-Packages are published to nuget.org automatically when changes are merged into `master`.
+## Versioning and releases
 
-Configure a GitHub Actions repository secret named `NUGET_API_KEY` with a nuget.org API key that has permission to push `Atya.Governance.Testing`.
-
-NuGet package versions are immutable. Update the package `<Version>` in `src/Testing/Testing.csproj` before merging a release change, otherwise nuget.org will reject the already-published version.
-
-For local package-feed publishing, see [LOCAL_NUGET.md](LOCAL_NUGET.md).
+MinVer derives package versions from `vMAJOR.MINOR.PATCH` tags. Releases are
+promoted from `development` to `master`; the publish workflow supports an
+explicit stable SemVer input for controlled releases. See
+[`docs/RELEASING.md`](docs/RELEASING.md) for the complete flow.

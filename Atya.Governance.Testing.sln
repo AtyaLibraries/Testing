@@ -5,15 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "src\Testing\Testing.csproj", "{1193E880-8496-430E-9173-9D6791784BF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atya.Governance.Testing", "src\Atya.Governance.Testing\Atya.Governance.Testing.csproj", "{1193E880-8496-430E-9173-9D6791784BF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5D20AA90-6969-D8BD-9DCD-8634F4692FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Sample.UnitTests", "samples\Testing.Sample.UnitTests\Testing.Sample.UnitTests.csproj", "{E99867DE-16F1-4891-87EA-F40417438B89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atya.Governance.Testing.Samples.UnitTests", "samples\Atya.Governance.Testing.Samples.UnitTests\Atya.Governance.Testing.Samples.UnitTests.csproj", "{E99867DE-16F1-4891-87EA-F40417438B89}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2F154640-42C5-4E8C-9FC5-B8A63A088094}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2F154640-42C5-4E8C-9FC5-B8A63A088094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.UnitTests", "test\Testing.UnitTests\Testing.UnitTests.csproj", "{A50AC891-E8E0-4C80-82E7-B84D6FD10C2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atya.Governance.Testing.UnitTests", "tests\Atya.Governance.Testing.UnitTests\Atya.Governance.Testing.UnitTests.csproj", "{A50AC891-E8E0-4C80-82E7-B84D6FD10C2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,14 +22,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
 		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
-		Directory.Solution.props = Directory.Solution.props
 		global.json = global.json
 		LICENSE = LICENSE
-		LOCAL_NUGET.md = LOCAL_NUGET.md
-		Publish-LocalNuGet.ps1 = Publish-LocalNuGet.ps1
+		nuget.config = nuget.config
 		README.md = README.md
+		SECURITY.md = SECURITY.md
 	EndProjectSection
 EndProject
 Global
