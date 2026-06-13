@@ -1,6 +1,16 @@
-# Testing
+# Atya.Governance.Testing
 
 Small test-only helpers for Atya packages and applications.
+
+## Install
+
+```bash
+dotnet add package Atya.Governance.Testing
+```
+
+## Supported frameworks
+
+Atya.Governance.Testing targets `net10.0`.
 
 ## Scope
 

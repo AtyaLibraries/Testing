@@ -4,7 +4,6 @@ using Atya.Governance.Testing.Diagnostics;
 using Atya.Governance.Testing.Json;
 using Atya.Governance.Testing.Security;
 using Atya.Governance.Testing.Time;
-using Xunit;
 
 namespace Testing.Sample.UnitTests;
 

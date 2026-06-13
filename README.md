@@ -2,7 +2,14 @@
 
 Small test-only helpers for Atya packages and applications.
 
-This package is intended for test projects only. Production projects should not reference it.
+This package is intended for test projects only. Production projects should
+not reference it.
+
+| | |
+| --- | --- |
+| Repository | [https://github.com/AtyaLibraries/Testing](https://github.com/AtyaLibraries/Testing) |
+| NuGet | `Atya.Governance.Testing` |
+| License | MIT |
 
 ## Helpers
 
@@ -13,28 +20,52 @@ This package is intended for test projects only. Production projects should not 
 - `ResultAssertions` checks common result-like shapes without referencing a specific result package.
 - `ValidationFailureBuilder` creates framework-neutral validation failure data.
 
-## Development
+## Layout
 
-Restore, build, and test from the repository root:
+```text
+.
+|-- Testing.sln
+|-- src/Testing/Testing.csproj
+|-- tests/Testing.UnitTests/
+|-- samples/Testing.Samples.Console/
+|-- docs/RELEASING.md
+|-- .github/
+`-- Directory.Packages.props
+```
+
+`Atya.Governance.Testing` is the public package, assembly, root namespace, and
+C# namespace identity. `Testing` is used only for local solution, project,
+folder, workflow, and non-shipping assembly names.
+
+## Development
 
 ```powershell
 dotnet restore .\Testing.sln
-dotnet build .\Testing.sln --configuration Release --no-restore -m:1
-dotnet test .\Testing.sln --configuration Release --no-build -m:1
+dotnet format .\Testing.sln --verify-no-changes --no-restore
+dotnet build .\Testing.sln --configuration Release --no-restore
+dotnet test .\tests\Testing.UnitTests\Testing.UnitTests.csproj --configuration Release --no-build
+dotnet pack .\src\Testing\Testing.csproj --configuration Release --no-build --output .\artifacts\packages -p:EnablePackageValidation=true
 ```
 
-Pack the library:
+The first restore creates `packages.lock.json` files. CI restores in locked
+mode, verifies formatting, builds on Linux and Windows, enforces 80% line
+coverage, validates the package, and uploads package and symbol artifacts.
+
+## GitHub setup
+
+Push `development` and `master`, authenticate the GitHub CLI, and run:
 
 ```powershell
-dotnet pack .\src\Testing\Testing.csproj --configuration Release --output .\artifacts\packages
+./bootstrap.ps1 -RepoOwner AtyaLibraries -RepoName Testing
 ```
 
-## Publishing
+Set the `NUGET_API_KEY`, `NUGET_SIGN_CERT_BASE64`, and
+`NUGET_SIGN_CERT_PASSWORD` secrets. Set `REQUIRE_SIGNED_PACKAGES` to `false`
+only for an explicit unsigned-publishing exception.
 
-Packages are published to nuget.org automatically when changes are merged into `master`.
+## Versioning
 
-Configure a GitHub Actions repository secret named `NUGET_API_KEY` with a nuget.org API key that has permission to push `Atya.Governance.Testing`.
-
-NuGet package versions are immutable. Update the package `<Version>` in `src/Testing/Testing.csproj` before merging a release change, otherwise nuget.org will reject the already-published version.
-
-For local package-feed publishing, see [LOCAL_NUGET.md](LOCAL_NUGET.md).
+MinVer derives package versions from `vMAJOR.MINOR.PATCH` tags. Releases are
+promoted from `development` to `master`; the publish workflow signs and pushes
+the package, creates the version tag, and creates the GitHub Release. See
+[docs/RELEASING.md](docs/RELEASING.md) for the full process.

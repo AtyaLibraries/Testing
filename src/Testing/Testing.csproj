@@ -1,16 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <PackageId>Atya.Governance.Testing</PackageId>
-        <AssemblyName>Atya.Governance.Testing</AssemblyName>
-        <RootNamespace>Atya.Governance.Testing</RootNamespace>
-        <Version>1.0.0</Version>
-        <Authors>Arsen Asulyan</Authors>
-        <Description>Small test-only helpers for Atya packages and applications.</Description>
-        <PackageTags>dotnet;testing;test-helpers;builders;assertions</PackageTags>
-        <RepositoryType>git</RepositoryType>
-        <IsPackable>true</IsPackable>
-        <DevelopmentDependency>true</DevelopmentDependency>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Atya.Governance.Testing</AssemblyName>
+    <PackageId>Atya.Governance.Testing</PackageId>
+    <RootNamespace>Atya.Governance.Testing</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageIcon>icon.png</PackageIcon>
+    <!-- Preserve the existing public positional-record parameter names. -->
+    <NoWarn>$(NoWarn);SA1313</NoWarn>
+
+    <!-- MinVer derives the version from git tags (e.g. tag `v1.2.3` -> 1.2.3). -->
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup Label="Runtime dependency + analyzers + versioning">
+    <PackageReference Include="Atya.Foundation.Guards" />
+    <PackageReference Include="Atya.Governance.CodeQuality" PrivateAssets="all" />
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
+  </ItemGroup>
+
 </Project>
