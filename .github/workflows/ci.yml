@@ -1,41 +1,20 @@
-name: CI
+﻿name: CI
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [development, master]
   pull_request:
-    branches:
-      - main
-      - master
+    branches: [development, master]
   workflow_dispatch:
 
 permissions:
   contents: read
+  checks: write
 
 jobs:
-  build:
-    name: Build and test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 10.0.x
-
-      - name: Restore
-        run: dotnet restore Testing.sln --verbosity minimal
-
-      - name: Build
-        run: dotnet build Testing.sln --configuration Release --no-restore --verbosity minimal -m:1
-
-      - name: Test
-        run: dotnet test Testing.sln --configuration Release --no-build --verbosity minimal -m:1
-
-      - name: Pack
-        run: dotnet pack src/Testing/Testing.csproj --configuration Release --no-build --output artifacts/packages --verbosity minimal
+  ci:
+    uses: AtyaLibraries/github-workflows/.github/workflows/dotnet-package-ci.yml@v1
+    with:
+      solution: ./Testing.sln
+      test-project: ./test/Testing.UnitTests/Testing.UnitTests.csproj
+      package-project: ./src/Testing/Testing.csproj

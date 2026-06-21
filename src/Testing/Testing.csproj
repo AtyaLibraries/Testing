@@ -1,16 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <PackageId>Atya.Governance.Testing</PackageId>
-        <AssemblyName>Atya.Governance.Testing</AssemblyName>
-        <RootNamespace>Atya.Governance.Testing</RootNamespace>
-        <Version>1.0.0</Version>
-        <Authors>Arsen Asulyan</Authors>
-        <Description>Small test-only helpers for Atya packages and applications.</Description>
-        <PackageTags>dotnet;testing;test-helpers;builders;assertions</PackageTags>
-        <RepositoryType>git</RepositoryType>
-        <IsPackable>true</IsPackable>
-        <DevelopmentDependency>true</DevelopmentDependency>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    </PropertyGroup>
+<Project Sdk="Atya.Build.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <PackageId>Atya.Governance.Testing</PackageId>
+    <AssemblyName>Atya.Governance.Testing</AssemblyName>
+    <RootNamespace>Atya.Governance.Testing</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <Authors>Arsen Asulyan</Authors>
+    <Copyright>Copyright (c) 2026 Arsen Asulyan</Copyright>
+    <Description>Small test-only helpers for Atya packages and applications.</Description>
+    <PackageTags>dotnet;testing;test-helpers;builders;assertions;governance</PackageTags>
+    <RepositoryUrl>https://github.com/AtyaLibraries/Testing</RepositoryUrl>
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+
+    <!-- MinVer derives the version from git tags (e.g. tag `v1.2.3` -> 1.2.3). -->
+    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+  </ItemGroup>
+
 </Project>
