@@ -1,43 +1,37 @@
-name: Publish NuGet Package
+name: Trigger central NuGet publish
 
 on:
   push:
-    branches:
-      - master
-  workflow_dispatch:
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
 
 jobs:
-  publish:
-    name: Publish to nuget.org
+  trigger-publisher:
+    name: Trigger central publisher
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Dispatch publish request
+        uses: actions/github-script@v7
+        env:
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_REF: ${{ github.ref_name }}
+          SOURCE_SOLUTION: ./Testing.sln
+          SOURCE_PACKAGE_PROJECT: ./src/Testing/Testing.csproj
         with:
-          dotnet-version: 10.0.x
-
-      - name: Restore
-        run: dotnet restore Testing.sln --verbosity minimal
-
-      - name: Build
-        run: dotnet build Testing.sln --configuration Release --no-restore --verbosity minimal -m:1
-
-      - name: Test
-        run: dotnet test Testing.sln --configuration Release --no-build --verbosity minimal -m:1
-
-      - name: Pack
-        run: dotnet pack src/Testing/Testing.csproj --configuration Release --no-build --output artifacts/packages --verbosity minimal
-
-      - name: Publish to nuget.org
-        run: >
-          dotnet nuget push "artifacts/packages/*.nupkg"
-          --api-key "${{ secrets.NUGET_API_KEY }}"
-          --source https://api.nuget.org/v3/index.json
-          --skip-duplicate
+          github-token: ${{ secrets.PUBLISHER_DISPATCH_TOKEN }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'AtyaLibraries',
+              repo: 'publisher',
+              event_type: 'publish-package',
+              client_payload: {
+                repository: process.env.SOURCE_REPOSITORY,
+                ref: process.env.SOURCE_REF,
+                solution: process.env.SOURCE_SOLUTION,
+                'package-project': process.env.SOURCE_PACKAGE_PROJECT
+              }
+            });
