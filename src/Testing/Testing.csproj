@@ -6,6 +6,7 @@
     <AssemblyName>Atya.Governance.Testing</AssemblyName>
     <RootNamespace>Atya.Governance.Testing</RootNamespace>
     <IsPackable>true</IsPackable>
+    <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
     <Authors>Arsen Asulyan</Authors>
     <Copyright>Copyright (c) 2026 Arsen Asulyan</Copyright>
     <Description>Small test-only helpers for Atya packages and applications.</Description>
@@ -14,6 +15,7 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
 
     <!-- MinVer derives the version from git tags (e.g. tag `v1.2.3` -> 1.2.3). -->
+    <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
   </PropertyGroup>
 
