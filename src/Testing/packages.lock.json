@@ -6,7 +6,7 @@
         "type": "Direct",
         "requested": "[1.1.0, )",
         "resolved": "1.1.0",
-        "contentHash": "7mseOTscZ82kfDJ3dj9tZXj+Z2t4UEgntOhgkOu+nJrgC9UF7vR14xs4kCi8NzDGXtxVWMqK8pB8pJsyZ7yNhg=="
+        "contentHash": "vWSyW0u93lQTDN32fJmPBL+8vPcPCUxkM5nJ+lKFlAjrA0KhDQN8Gg/CQwxrUgVQ4mnDy8oIo9wrA0DXLqFykg=="
       },
       "Microsoft.SourceLink.GitHub": {
         "type": "Direct",
