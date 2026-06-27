@@ -1,13 +1,13 @@
-<Project Sdk="Atya.Build.Sdk">
+﻿<Project Sdk="Atya.Build.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
     <PackageId>Atya.Governance.Testing</PackageId>
     <AssemblyName>Atya.Governance.Testing</AssemblyName>
     <RootNamespace>Atya.Governance.Testing</RootNamespace>
     <IsPackable>true</IsPackable>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
     <Authors>Arsen Asulyan</Authors>
+    <Company>Atya</Company>
     <Copyright>Copyright (c) 2026 Arsen Asulyan</Copyright>
     <Description>Small test-only helpers for Atya packages and applications.</Description>
     <PackageTags>dotnet;testing;test-helpers;builders;assertions;governance</PackageTags>
@@ -15,13 +15,14 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
 
     <!-- MinVer derives the version from git tags (e.g. tag `v1.2.3` -> 1.2.3). -->
+    <MinVerTagPrefix>v</MinVerTagPrefix>
     <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="" />
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 
 </Project>

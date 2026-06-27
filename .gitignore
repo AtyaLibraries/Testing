@@ -17,6 +17,8 @@
 
 # Visual Studio
 .vs/
+.tmp/
+.claude/
 
 # Rider
 .idea/

@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -16,5 +16,6 @@ jobs:
     uses: AtyaLibraries/github-workflows/.github/workflows/dotnet-package-ci.yml@v1
     with:
       solution: ./Testing.sln
-      test-project: ./test/Testing.UnitTests/Testing.UnitTests.csproj
+      test-project: ./tests/Testing.UnitTests/Testing.UnitTests.csproj
       package-project: ./src/Testing/Testing.csproj
+      allow-empty-coverage: true # scaffold has no covered code yet; set false once you add some
