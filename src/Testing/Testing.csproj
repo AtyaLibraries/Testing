@@ -5,7 +5,7 @@
     <AssemblyName>Atya.Governance.Testing</AssemblyName>
     <RootNamespace>Atya.Governance.Testing</RootNamespace>
     <IsPackable>true</IsPackable>
-    <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
+    <PackageValidationBaselineVersion>1.1.0</PackageValidationBaselineVersion>
     <Authors>Arsen Asulyan</Authors>
     <Company>Atya</Company>
     <Copyright>Copyright (c) 2026 Arsen Asulyan</Copyright>
