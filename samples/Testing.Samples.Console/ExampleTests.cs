@@ -8,8 +8,14 @@ using Xunit;
 
 namespace Testing.Sample.UnitTests;
 
+/// <summary>
+/// Demonstrates the governance testing helpers in unit tests.
+/// </summary>
 public sealed class ExampleTests
 {
+    /// <summary>
+    /// Shows how to advance a fake clock.
+    /// </summary>
     [Fact]
     public void FakeClockCanAdvanceTime()
     {
@@ -20,6 +26,9 @@ public sealed class ExampleTests
         Assert.Equal(new DateTimeOffset(2026, 4, 18, 12, 15, 0, TimeSpan.Zero), clock.UtcNow);
     }
 
+    /// <summary>
+    /// Shows structural JSON comparison.
+    /// </summary>
     [Fact]
     public void JsonAssertComparesJsonByStructure()
     {
@@ -34,6 +43,9 @@ public sealed class ExampleTests
         JsonAssert.Equal(Expected, Actual);
     }
 
+    /// <summary>
+    /// Shows how to set a fake correlation identifier.
+    /// </summary>
     [Fact]
     public void FakeCorrelationIdAccessorCanBeChanged()
     {
@@ -45,6 +57,9 @@ public sealed class ExampleTests
         Assert.Equal("order-123", accessor.CorrelationId);
     }
 
+    /// <summary>
+    /// Shows how to represent an authenticated fake user.
+    /// </summary>
     [Fact]
     public void FakeCurrentUserCanRepresentAuthenticatedUser()
     {
@@ -57,6 +72,9 @@ public sealed class ExampleTests
         Assert.Equal("Ada", currentUser.UserName);
     }
 
+    /// <summary>
+    /// Shows how to create validation failure data.
+    /// </summary>
     [Fact]
     public void ValidationFailureBuilderCreatesFailureData()
     {
@@ -71,6 +89,9 @@ public sealed class ExampleTests
         Assert.Equal("Required", failure.ErrorCode);
     }
 
+    /// <summary>
+    /// Shows assertions for common result shapes.
+    /// </summary>
     [Fact]
     public void ResultAssertionsSupportCommonResultShapes()
     {
