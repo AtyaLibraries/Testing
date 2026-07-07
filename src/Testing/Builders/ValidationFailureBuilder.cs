@@ -116,6 +116,7 @@ public sealed class ValidationFailureBuilder
 /// <param name="AttemptedValue">Optional attempted value.</param>
 /// <param name="Severity">Optional severity.</param>
 /// <param name="CustomState">Optional custom state.</param>
+#pragma warning disable SA1313
 public sealed record TestValidationFailure(
     string PropertyName,
     string ErrorMessage,
@@ -123,3 +124,4 @@ public sealed record TestValidationFailure(
     object? AttemptedValue,
     string? Severity,
     object? CustomState);
+#pragma warning restore SA1313
